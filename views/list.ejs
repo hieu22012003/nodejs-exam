@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="col-md-12">
+        <div class="col-md-2"><a href="/" class="btn btn-outline-primary">Home</a> </div>
+        <div class="col-md-2"><a href="/users/create" class="btn btn-outline-primary">Add New User</a></div>
+        <div class="col-md-2"><a href="/users/list" class="btn btn-outline-primary">All Users List</a></div>
+    </div>
+    <div class="col-md-6">
+        <h2>User List</h2>
+        <div class="col-md-12">
+            <table class="table table-dark table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">User Name</th>
+                    <th scope="col">Mobile Number</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% user.map((item,key)=> {%>
+                    <tr>
+                        <th scope="row"><%= key+1%></th>
+                        <td><%= item.firstname%></td>
+                        <td><%= item.lastname%></td>
+                        <td><%= item.username%></td>
+                        <td><%= item.mobilenumber%></td>
+                        <td><a href="/users/editUser/<%= item._id%>" class="btn btn-primary">Edit</a></td>
+                        <form action="/users/deleteUser/<%= item._id%>" method="post">
+                            <td><button onclick="return confirm('Ban chac chan muon xoa <%= item.username%>?')" class="btn btn-primary">Delete</button></td>
+                        </form>
+                    </tr>
+                <%})%>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
